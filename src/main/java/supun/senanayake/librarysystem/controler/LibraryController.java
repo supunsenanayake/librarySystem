@@ -34,14 +34,14 @@ public class LibraryController {
         return ResponseEntity.ok(books);
     }
 
-    @PostMapping("/api/borrowers/{borrowerId}/borrow")
-    public ResponseEntity<String> borrowBook(@PathVariable String borrowerId, @RequestBody String bookId) {
+    @PutMapping("/api/borrowers/{borrowerId}/books/{bookId}/borrow")
+    public ResponseEntity<String> borrowBook(@PathVariable String borrowerId, @PathVariable String bookId) throws Exception {
         libraryService.borrowBook(borrowerId, bookId);
         return ResponseEntity.ok("Book borrowed successfully.");
     }
 
-    @PostMapping("/api/borrowers/{borrowerId}/return")
-    public ResponseEntity<String> returnBook(@PathVariable String borrowerId, @RequestBody String bookId) {
+    @PutMapping("/api/borrowers/{borrowerId}/books/{bookId}/return")
+    public ResponseEntity<String> returnBook(@PathVariable String borrowerId, @PathVariable String bookId) throws Exception {
         libraryService.returnBook(borrowerId, bookId);
         return ResponseEntity.ok("Book returned successfully.");
     }
