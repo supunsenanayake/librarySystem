@@ -23,7 +23,7 @@ public class LibraryController {
     }
 
     @PostMapping("/api/books")
-    public ResponseEntity<Book> registerBook(@RequestBody Book book) {
+    public ResponseEntity<Book> registerBook(@RequestBody Book book) throws Exception {
         Book newBook = libraryService.registerBook(book);
         return ResponseEntity.ok(newBook);
     }

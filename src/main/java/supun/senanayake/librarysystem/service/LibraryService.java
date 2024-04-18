@@ -26,8 +26,17 @@ public class LibraryService {
 
     // Registers a new book in the system
     @Transactional
-    public Book registerBook(Book book) {
-        return bookRepository.save(book);
+    public Book registerBook(Book book) throws Exception {
+        Optional<Book> result = bookRepository.findByIsbn(book.getIsbn());
+        if (result.isPresent()) {
+            if (result.get().getAuthor().equals(book.getAuthor()) && result.get().getTitle().equals(book.getTitle())) {
+                return bookRepository.save(book);
+            } else {
+                throw new Exception("2 books with the same ISBN numbers must have the same title and same author");
+            }
+        }else {
+            return bookRepository.save(book);
+        }
     }
 
     // Retrieves a list of all books in the library
