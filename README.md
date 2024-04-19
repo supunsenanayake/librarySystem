@@ -25,7 +25,7 @@ The project would have the following main components:
 * isbn: ISBN number of the book
 * title: Title of the book
 * author: Author of the book
-
+* borrowedBy: Borrower id
 ## API Endpoints
 URL FOR swagger-ui: http://localhost:2222/swagger-ui/index.html#/
 * POST /api/borrowers - Register a new borrower.
