@@ -13,10 +13,13 @@ import java.util.Optional;
 
 @Service
 public class LibraryService {
+    private final BookRepository bookRepository;
+    private final BorrowerRepository borrowerRepository;
     @Autowired
-    private BookRepository bookRepository;
-    @Autowired
-    private BorrowerRepository borrowerRepository;
+    public LibraryService(BookRepository bookRepository, BorrowerRepository borrowerRepository) {
+        this.bookRepository = bookRepository;
+        this.borrowerRepository = borrowerRepository;
+    }
 
     // Registers a new borrower in the system
     @Transactional
@@ -34,7 +37,7 @@ public class LibraryService {
             } else {
                 throw new Exception("2 books with the same ISBN numbers must have the same title and same author");
             }
-        }else {
+        } else {
             return bookRepository.save(book);
         }
     }

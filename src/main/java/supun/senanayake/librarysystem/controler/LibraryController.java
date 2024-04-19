@@ -12,8 +12,11 @@ import java.util.List;
 @RestController
 public class LibraryController {
 
+    private final LibraryService libraryService;
     @Autowired
-    private LibraryService libraryService;
+    public LibraryController(LibraryService libraryService) {
+        this.libraryService = libraryService;
+    }
 
 
     @PostMapping("/api/borrowers")
